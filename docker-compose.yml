@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  almond:
+    image: almondsh/almond:latest
+    stdin_open: true
+    tty: true
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    volumes:
+      - ./:/home/jovyan/work
+      - coursier-cache:/home/jovyan/.cache/coursier  # Cache dependencies
+    mem_limit: 4g
+    memswap_limit: 4g
+
+volumes:
+  coursier-cache:  # Named volume for persistent cache
