@@ -13,6 +13,8 @@ services:
       - coursier-cache:/home/jovyan/.cache/coursier  # Cache dependencies
     mem_limit: 4g
     memswap_limit: 4g
+    environment:
+      - JUPYTER_TOKEN=spark
 
 volumes:
   coursier-cache:  # Named volume for persistent cache
