@@ -12,11 +12,11 @@ $1.md : $1.ipynb
 	@echo "Converting $$< -> $$@"
 	@echo "-------------------------"
 	cd .. && uv run jupyter nbconvert --HTMLExporter.sanitize_html=true blogs/$$< --to markdown \
-# 		--template-file=blogs/custom_markdown.tpl \
 		--TagRemovePreprocessor.remove_input_tags="['remove_input']" \
-		--TagRemovePreprocessor.remove_output_tags="['remove_output']" \
+    	--TagRemovePreprocessor.remove_output_tags="['remove_output']" \
+    	--TagRemovePreprocessor.remove_cell_tags="['remove_cell']"
 		--NbConvertApp.output_files_dir=./blogs/assets/images/$1 \
-		--ExtractOutputPreprocessor.output_filename_template='fig_{index}{extension}'
+		--ExtractOutputPreprocessor.output_filename_template='fig_{index}{extension}'	
 		
 	sed -i '' -E 's/\x1B\[[0-9;]*[mK]//g' $$@
 	sed -i '' -E 's/\(\.\/assets/\(\/assets/g' $$@
