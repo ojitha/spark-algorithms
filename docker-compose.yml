@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   almond:
-    image: almondsh/almond:latest
+    image: almondsh/almond:0.14.1-scala-2.12.20
     stdin_open: true
     tty: true
     ports:
