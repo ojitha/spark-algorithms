@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   almond:
-    image: almondsh/almond:0.14.1-scala-2.12.20
+    image: almondsh/almond:0.13.14
     stdin_open: true
     tty: true
     ports:
@@ -11,6 +11,7 @@ services:
     volumes:
       - ./:/home/jovyan/work
       - coursier-cache:/home/jovyan/.cache/coursier  # Cache dependencies
+      - ./coursier-config.json:/home/jovyan/.coursier/config.json
     mem_limit: 4g
     memswap_limit: 4g
     environment:
