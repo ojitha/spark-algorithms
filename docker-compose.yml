@@ -8,10 +8,12 @@ services:
     ports:
       - "8888:8888"
       - "4040:4040"
+      - "7077:7077"
     volumes:
       - ./:/home/jovyan/work
       - coursier-cache:/home/jovyan/.cache/coursier  # Cache dependencies
       - ./coursier-config.json:/home/jovyan/.coursier/config.json
+      - ./spark-defaults.conf:/usr/local/spark/conf/spark-defaults.conf
     mem_limit: 4g
     memswap_limit: 4g
     environment:
