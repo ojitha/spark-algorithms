@@ -1,0 +1,7 @@
+.bloop
+.metals
+.vscode
+project
+scala-*
+streams
+task-temp-directory
