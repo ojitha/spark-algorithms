@@ -14,10 +14,12 @@ services:
       - coursier-cache:/home/jovyan/.cache/coursier  # Cache dependencies
       - ./coursier-config.json:/home/jovyan/.coursier/config.json
       - ./spark-defaults.conf:/usr/local/spark/conf/spark-defaults.conf
-    mem_limit: 4g
-    memswap_limit: 4g
+    mem_limit: 8g
+    memswap_limit: 8g
     environment:
       - JUPYTER_TOKEN=spark
+      # doesn't work with NotebookSparkSession
+      # - SPARK_CONF_DIR=/usr/local/spark/conf
 
 volumes:
   coursier-cache:  # Named volume for persistent cache
