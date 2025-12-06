@@ -1,25 +1,26 @@
-version: '3.8'
-
 services:
-  almond:
-    image: almondsh/almond:0.13.14
-    stdin_open: true
-    tty: true
+  almond-notebook:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # These match the ARG instructions in your Dockerfile
+        ALMOND_VERSION: "0.14.3"
+        SCALA_VERSIONS: "2.13.17"
+        # Optional: Set to "yes" if you are using local ivy cache
+        LOCAL_IVY: "no" 
     ports:
+      # Maps port 8888 on the container to port 8888 on your host
       - "8888:8888"
       - "4040:4040"
       - "7077:7077"
     volumes:
+      # Persist your work directory to your local machine
       - ./:/home/jovyan/work
       - coursier-cache:/home/jovyan/.cache/coursier  # Cache dependencies
-      - ./coursier-config.json:/home/jovyan/.coursier/config.json
-      - ./spark-defaults.conf:/usr/local/spark/conf/spark-defaults.conf
-    mem_limit: 8g
-    memswap_limit: 8g
     environment:
-      - JUPYTER_TOKEN=spark
-      # doesn't work with NotebookSparkSession
-      # - SPARK_CONF_DIR=/usr/local/spark/conf
+      # Optional: Grant sudo privileges if needed for installing extra packages later
+      - GRANT_SUDO=yes
 
 volumes:
-  coursier-cache:  # Named volume for persistent cache
+  coursier-cache:

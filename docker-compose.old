@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  almond:
+    image: almondsh/almond:0.14.1-scala-2.13.16
+    # image: almondsh/almond:0.13.14
+    stdin_open: true
+    tty: true
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+      - "7077:7077"
+    volumes:
+      - ./:/home/jovyan/work
+      - coursier-cache:/home/jovyan/.cache/coursier  # Cache dependencies
+      - ./coursier-config.json:/home/jovyan/.coursier/config.json
+      - ./spark-defaults.conf:/usr/local/spark/conf/spark-defaults.conf
+    mem_limit: 8g
+    memswap_limit: 8g
+    environment:
+      - JUPYTER_TOKEN=spark
+      # doesn't work with NotebookSparkSession
+      # - SPARK_CONF_DIR=/usr/local/spark/conf
+
+volumes:
+  coursier-cache:  # Named volume for persistent cache
