@@ -18,9 +18,12 @@ services:
       # Persist your work directory to your local machine
       - ./:/home/jovyan/work
       - coursier-cache:/home/jovyan/.cache/coursier  # Cache dependencies
+      - ./coursier-config.json:/home/jovyan/.coursier/config.json
+      - ./spark-defaults.conf:/usr/local/spark/conf/spark-defaults.conf
     environment:
       # Optional: Grant sudo privileges if needed for installing extra packages later
       - GRANT_SUDO=yes
+      - JUPYTER_TOKEN=spark
 
 volumes:
   coursier-cache:

@@ -1,6 +1,18 @@
 {
   "repositories": {
-    "central": "https://repo1.maven.org/maven2"
+    "central": "https://repo1.maven.org/maven2",
+    "apache-snapshots": "https://repository.apache.org/content/repositories/snapshots"
   },
-  "classifiers": ["sources", "javadoc"]
+  "classifiers": ["sources", "javadoc"],
+  "cache": {
+    "ttl": "24h"
+  },
+  "parallel-downloads": 6,
+  "exclude": [
+    "org.slf4j:slf4j-log4j12",
+    "log4j:log4j"
+  ],
+  "resolution": {
+    "strict-conflict": false
+  }
 }
