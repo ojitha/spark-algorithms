@@ -1,4 +1,4 @@
-blogsSources := 2025-11-07-SparkDataset
+blogsSources := 2025-11-07-SparkDataset 2025-12-06-ICIJ-Fraud-Analysis
 
 source += $(blogsSources)
 
